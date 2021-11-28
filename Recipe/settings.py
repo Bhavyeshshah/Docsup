@@ -21,9 +21,9 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 # ==============================================================================
 
 # SENDGRID API
-SENDGRID_EMAIL_API = config('SENDGRID_EMAIL_API')
+# SENDGRID_EMAIL_API = config('SENDGRID_EMAIL_API')
 # FROM EMAIL ADDRESS THAT SHOULD BE SINGLE USER VERIFIED
-FROM_EMAIL = config('FROM_EMAIL')
+# FROM_EMAIL = config('FROM_EMAIL')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
