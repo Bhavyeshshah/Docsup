@@ -96,10 +96,10 @@ WSGI_APPLICATION = 'Recipe.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'HOST': config('DB_HOST'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
+        'NAME': 'Docsup',
+        'USER': 'postgres',
+        'PASSWORD':'123456789',
+        'HOST' : 'localhost',
     }
 }
 
