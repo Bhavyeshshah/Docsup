@@ -5,24 +5,13 @@ from decouple import config, Csv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = "django-insecure-%o3xa6_!ov+rlw%+p4ue*-!hq&z*50@d&&cvh6ee(td9091mp9)"
+ALLOWED_HOSTS = config('localhost', default='127.0.0.1', cast=Csv())
 
-# ==============================================================================
-# CORE SETTINGS
-# ==============================================================================
+DEBUG = True
 
-SECRET_KEY = config('SECRET_KEY', default=string.ascii_letters)
-ALLOWED_HOSTS = ['*']
-
-DEBUG = config('DEBUG', default=True, cast=bool)
-
-
-# ==============================================================================
-# SENDGRID SETTINGS
-# ==============================================================================
-
-# SENDGRID API
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # SENDGRID_EMAIL_API = config('SENDGRID_EMAIL_API')
-# FROM EMAIL ADDRESS THAT SHOULD BE SINGLE USER VERIFIED
 # FROM_EMAIL = config('FROM_EMAIL')
 
 INSTALLED_APPS = [
@@ -32,21 +21,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'crispy_forms',
     'rest_framework',
     'rest_framework.authtoken',
     'django_quill',
-
     'recipeapp.apps.RecipeappConfig',
     'recipesandingredients.apps.RecipesandingredientsConfig',
     'company.apps.CompanyConfig',
 ]
-
-
-# ==============================================================================
-# MIDDLEWARE SETTINGS
-# ==============================================================================
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,22 +39,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'recipeapp.middleware.UserTimezoneMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Recipe.urls'
 
-
-# ==============================================================================
-# THIRD-PARTY APPS SETTINGS
-# ==============================================================================
+AUTH_USER_MODEL = "recipeapp.UserModel"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-
-# ==============================================================================
-# TEMPLATES SETTINGS
-# ==============================================================================
 
 TEMPLATES = [
     {
@@ -98,17 +72,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Docsup',
         'USER': 'postgres',
-        'PASSWORD':'123456789',
-        'HOST' : 'localhost',
+        'PASSWORD': '123456789',
+        'HOST': 'localhost'
     }
 }
 
-
-# ==============================================================================
-# AUTHENTICATION AND AUTHORIZATION SETTINGS
-# ==============================================================================
-
-AUTH_USER_MODEL = "recipeapp.UserModel"
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -124,11 +92,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# ==============================================================================
-# INTERNATIONALIZATION AND LOCALIZATION SETTINGS
-# ==============================================================================
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -139,23 +102,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# ==============================================================================
-# STATIC FILES SETTINGS
-# ==============================================================================
-
 STATIC_URL = '/static/'
-# FOR PRODUCTION
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# FOR LOCAL
-'''STATICFILES_DIRS = (
+
+# STATIC_ROOT = '/static/'
+
+STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-)'''
-
-
-# ==============================================================================
-# MEDIA FILES SETTINGS
-# ==============================================================================
+)
 
 MEDIA_URL = '/media/'
 
